@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veliner · Métricas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>Métricas & recomendaciones</h1>
+          <p>Qué repetir, qué mejorar y cómo optimizar</p>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="index.html">← Dashboard</a>
+        <a class="pill" href="calendar.html">📅 Calendario</a>
+        <a class="pill" href="scripts.html">🎬 Guiones</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <div class="form">
+        <div class="field">
+          <label>Tipo</label>
+          <select id="type">
+            <option value="brand" selected>Marca / Estudio</option>
+            <option value="creator">Creador UGC</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Objetivo</label>
+          <select id="goal">
+            <option value="grow" selected>Crecer</option>
+            <option value="sell">Vender</option>
+            <option value="auth">Autoridad</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <button class="btn" id="gen">Ver recomendaciones</button>
+    </div>
+
+    <div class="results" id="out"></div>
+    <div class="footer">Veliner OS · Métricas</div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const out = document.getElementById("out");
+    const btn = document.getElementById("gen");
+
+    function render(items){
+      out.innerHTML = `
+        <div class="result">
+          <h4>📊 Recomendaciones prácticas</h4>
+          <div class="meta">Pensado para mejorar resultados sin complicarte</div>
+          <ul class="list">
+            ${items.map(i=>`<li><b>${i.k}:</b> ${i.v}</li>`).join("")}
+          </ul>
+        </div>
+      `;
+    }
+
+    btn.addEventListener("click", ()=>{
+      const type = document.getElementById("type").value;
+      const goal = document.getElementById("goal").value;
+      render(VelinerOS.metricsAdvice(type, goal));
+    });
+
+    btn.click();
+  </script>
+</body>
+</html>
