@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles for Premium Branding */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB; /* Soft light background */
+    color: #4B5563; /* Soft dark text color */
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #2563EB; /* Elegant brand color */
+}
+
+.button {
+    background-color: #3B82F6; /* Soft blue for buttons */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #2563EB; /* Darker shade on hover */
+}
+
+/* Mobile-first responsive styles */
+@media (max-width: 640px) {
+    body {
+        font-size: 16px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+}
