@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veliner · Calendario mensual</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>Calendario mensual</h1>
+          <p>12 publicaciones / mes (3 por semana)</p>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="index.html">← Dashboard</a>
+        <a class="pill" href="scripts.html">🎬 Guiones</a>
+        <a class="pill" href="metrics.html">📊 Métricas</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="panel" id="como">
+      <div class="form">
+        <div class="field">
+          <label>Cuenta (arroba)</label>
+          <input id="handle" placeholder="ej: @velinerugc" value="@velinerugc" />
+        </div>
+        <div class="field">
+          <label>Tipo</label>
+          <select id="type">
+            <option value="brand" selected>Marca / Estudio</option>
+            <option value="creator">Creador UGC</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Objetivo</label>
+          <select id="goal">
+            <option value="grow" selected>Crecer (alcance)</option>
+            <option value="sell">Vender (leads)</option>
+            <option value="auth">Autoridad (comunidad)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Plataformas</label>
+          <input value="Instagram + TikTok" disabled />
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <button class="btn" id="gen">Generar mes completo</button>
+      <button class="btn secondary" id="copy">Copiar calendario</button>
+
+      <p style="margin-top:10px;color:rgba(244,244,255,.55);font-size:12px">
+        Nota: en esta fase el sistema usa plantillas que funcionan (sin scraping de TikTok). Luego conectamos IA + tendencias reales.
+      </p>
+    </div>
+
+    <div class="results" id="out"></div>
+
+    <div class="footer">Veliner OS · Calendario mensual</div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const out = document.getElementById("out");
+    const btn = document.getElementById("gen");
+    const copy = document.getElementById("copy");
+
+    function render(plan){
+      const h = plan.handle;
+      const typeLabel = plan.type === "creator" ? "Creador UGC" : "Marca/Estudio";
+      const goalLabel = ({grow:"Crecer", sell:"Vender", auth:"Autoridad"})[plan.goal];
+
+      let html = `
+        <div class="result">
+          <h4>📅 Calendario para @${h}</h4>
+          <div class="meta">${typeLabel} · Objetivo: ${goalLabel} · 12 posts/mes</div>
+          <ul class="list">
+            <li><b>Pilares:</b> ${plan.strategy.pillars.join(" · ")}</li>
+            <li><b>Foco:</b> ${plan.strategy.focus}</li>
+            <li><b>CTA base:</b> ${plan.strategy.cta}</li>
+          </ul>
+        </div>
+      `;
+
+      plan.weeks.forEach(w=>{
+        html += `
+          <div class="result">
+            <h4>Semana ${w.week}</h4>
+            <div class="meta">3 publicaciones (IG + TikTok)</div>
+            <ul class="list">
+        `;
+        w.items.forEach(it=>{
+          html += `<li>
+            <b>${it.title}</b> · ${it.format} · ${it.platform}
+            <br><span style="color:rgba(244,244,255,.55)">Hook:</span> ${it.hook}
+            <br><span style="color:rgba(244,244,255,.55)">CTA:</span> ${it.cta}
+            <br><span style="color:rgba(244,244,255,.55)">Por qué:</span> ${it.why}
+          </li><br>`;
+        });
+        html += `</ul></div>`;
+      });
+
+      out.innerHTML = html;
+      window.__lastCalendarText = out.innerText;
+    }
+
+    btn.addEventListener("click", ()=>{
+      const handle = VelinerOS.sanitizeHandle(document.getElementById("handle").value);
+      const type = document.getElementById("type").value;
+      const goal = document.getElementById("goal").value;
+      const plan = VelinerOS.monthPlan(handle, type, goal);
+      render(plan);
+    });
+
+    copy.addEventListener("click", async ()=>{
+      if(!window.__lastCalendarText){
+        alert("Primero genera el calendario 🙂");
+        return;
+      }
+      try{
+        await navigator.clipboard.writeText(window.__lastCalendarText);
+        alert("Calendario copiado ✅");
+      }catch(e){
+        alert("En iPad a veces falla copiar. Mantén pulsado y copia manual si hace falta.");
+      }
+    });
+
+    // autogenera una vez
+    btn.click();
+  </script>
+</body>
+</html>
