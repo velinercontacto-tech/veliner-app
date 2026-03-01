@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Crear cuenta · Veliner</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand">Veliner · Content OS</div>
+      <a class="btn ghost" href="/">Volver</a>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top:24px;">
+    <section class="card" style="max-width:520px;margin:0 auto;">
+      <h1 style="margin:0 0 8px;">Crear cuenta</h1>
+      <p style="opacity:.8;margin:0 0 18px;">Regístrate para usar el sistema.</p>
+
+      <a id="clerkSignUp" class="btn primary" href="#" style="width:100%;text-align:center;display:inline-block;">
+        Registrarme con Clerk
+      </a>
+
+      <p style="margin:14px 0 0;opacity:.8;">
+        ¿Ya tienes cuenta? <a href="/sign-in">Iniciar sesión</a>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const CLERK_FRONTEND = "https://TU-FRONTEND-API.clerk.accounts.dev";
+    const redirectUrl = encodeURIComponent("https://app.velinerugc.com/");
+    document.getElementById("clerkSignUp").href =
+      `${CLERK_FRONTEND}/sign-up?redirect_url=${redirectUrl}`;
+  </script>
+</body>
+</html>
