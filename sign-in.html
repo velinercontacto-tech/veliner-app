@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Iniciar sesión · Veliner</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand">Veliner · Content OS</div>
+      <a class="btn ghost" href="/">Volver</a>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top:24px;">
+    <section class="card" style="max-width:520px;margin:0 auto;">
+      <h1 style="margin:0 0 8px;">Iniciar sesión</h1>
+      <p style="opacity:.8;margin:0 0 18px;">Accede a tu panel.</p>
+
+      <a id="clerkSignIn" class="btn primary" href="#" style="width:100%;text-align:center;display:inline-block;">
+        Continuar con Clerk
+      </a>
+
+      <p style="margin:14px 0 0;opacity:.8;">
+        ¿No tienes cuenta? <a href="/sign-up">Crear cuenta</a>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // ✅ CAMBIA ESTE DOMINIO por el "Frontend API" de CLERK (PRODUCTION)
+    // Lo verás en Clerk → (arriba selecciona Production) → Configure → Domains / API keys
+    const CLERK_FRONTEND = "https://TU-FRONTEND-API.clerk.accounts.dev";
+
+    const redirectUrl = encodeURIComponent("https://app.velinerugc.com/");
+    document.getElementById("clerkSignIn").href =
+      `${CLERK_FRONTEND}/sign-in?redirect_url=${redirectUrl}`;
+  </script>
+</body>
+</html>
