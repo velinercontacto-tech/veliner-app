@@ -1,117 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Veliner | Content OS</title>
-
-  <style>
-    :root{
-      --purple:#8b5cf6;
-      --dark:#0f0f14;
-      --soft:#f4f4f7;
-    }
-
-    *{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;}
-    body{margin:0;background:var(--soft);color:#111;}
-
-    header{
-      background:var(--dark);
-      color:white;
-      padding:24px;
-      text-align:center;
-    }
-
-    header h1{margin:0;font-size:26px;}
-    header p{opacity:.8;margin-top:8px;}
-
-    main{
-      padding:24px;
-      display:grid;
-      gap:20px;
-      max-width:1100px;
-      margin:auto;
-    }
-
-    .card{
-      background:white;
-      border-radius:16px;
-      padding:20px;
-      box-shadow:0 10px 25px rgba(0,0,0,.05);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:20px;
-    }
-
-    button{
-      background:var(--purple);
-      color:white;
-      border:none;
-      padding:12px 16px;
-      border-radius:12px;
-      font-size:14px;
-      cursor:pointer;
-    }
-
-    button.secondary{
-      background:#eee;
-      color:#111;
-    }
-
-    footer{
-      text-align:center;
-      padding:20px;
-      font-size:13px;
-      opacity:.6;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veliner · Content OS</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<header>
-  <h1>Veliner · Content OS</h1>
-  <p>La app que piensa, planifica y crea contenido por ti</p>
-</header>
-
-<main>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>📅 Calendario mensual</h3>
-      <p>Contenido automático optimizado para Instagram y TikTok.</p>
-      <button>Generar mes completo</button>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Veliner · Content OS</h1>
+          <p>Tu centro de control de contenido (móvil · iPad · PC)</p>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="calendar.html">📅 Calendario</a>
+        <a class="pill" href="scripts.html">🎬 Guiones</a>
+        <a class="pill" href="metrics.html">📊 Métricas</a>
+      </div>
     </div>
-
-    <div class="card">
-      <h3>🎬 Guiones virales</h3>
-      <p>Guiones basados en lo que está funcionando ahora mismo.</p>
-      <button>Crear guiones</button>
-    </div>
-
-    <div class="card">
-      <h3>📊 Métricas</h3>
-      <p>Análisis de rendimiento y recomendaciones IA.</p>
-      <button class="secondary">Ver métricas</button>
-    </div>
-
-    <div class="card">
-      <h3>🤖 IA Veliner</h3>
-      <p>El cerebro del sistema (conectado a tendencias).</p>
-      <button>Activar IA</button>
-    </div>
-
   </div>
 
-</main>
+  <div class="container">
+    <section class="hero">
+      <h2>Planifica 1 mes de contenido en minutos.</h2>
+      <p>
+        Veliner OS te da un calendario mensual (3 posts/semana), guiones listos y recomendaciones de métricas.
+        En esta fase: todo funciona sin IA real aún. Luego lo conectamos con IA para automatizar.
+      </p>
 
-<footer>
-  Veliner UGC · Plataforma interna SaaS
-</footer>
+      <div class="kpi">
+        <span class="badge"><strong>3</strong> posts/semana</span>
+        <span class="badge"><strong>12</strong> posts/mes</span>
+        <span class="badge">Instagram + TikTok</span>
+        <span class="badge">Formato vendible (SaaS)</span>
+      </div>
+    </section>
 
+    <section class="grid">
+      <div class="card">
+        <h3>📅 Calendario mensual</h3>
+        <p>Genera un plan completo optimizado para Instagram y TikTok en segundos.</p>
+        <div class="actions">
+          <a class="btn" href="calendar.html">Generar mes completo</a>
+          <a class="btn secondary" href="calendar.html#como">Cómo funciona</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🎬 Guiones virales</h3>
+        <p>Guiones con hooks, estructura y CTA. Pensados para retención y conversión.</p>
+        <div class="actions">
+          <a class="btn" href="scripts.html">Crear guiones</a>
+          <a class="btn secondary" href="scripts.html#packs">Ver packs</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📊 Métricas</h3>
+        <p>Recomendaciones claras: qué repetir, qué cambiar y cómo mejorar resultados.</p>
+        <div class="actions">
+          <a class="btn" href="metrics.html">Ver métricas</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🧠 IA Veliner (siguiente fase)</h3>
+        <p>Conectaremos OpenAI + automatizaciones para que el sistema genere y mejore con datos reales.</p>
+        <div class="actions">
+          <button class="btn secondary" onclick="alert('IA real = siguiente fase. Primero dejamos la base perfecta 💜')">Activar IA</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Veliner UGC · Sistema interno (Fase 1 UI + lógica)</div>
+  </div>
 </body>
 </html>
